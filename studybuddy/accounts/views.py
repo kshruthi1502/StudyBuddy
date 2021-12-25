@@ -1,0 +1,119 @@
+from django.shortcuts import render,redirect
+from django.contrib import messages
+# Create your views here.
+from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUserForm
+from django.contrib.auth import authenticate,login,logout
+from django.http import FileResponse
+import os
+def home(request):
+    return render(request,'accounts/mycourse.html')
+
+def redirecthome(request):
+    return render(request,'accounts/home_lr.html')
+def logouttohome(request):
+    return render(request,'accounts/home_lr.html')
+
+
+def loginpage(request):
+    if request.method == 'POST':
+       username= request.POST.get('username')
+       password=request.POST.get('password')
+       user = authenticate(request, username=username,password=password)
+       if user is not None:
+           login(request,user)
+           return redirect('home')
+    context ={}
+    return render(request,'accounts/login.html',context)
+
+def register(request):
+    form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user=form.cleaned_data.get('username')
+            messages.success(request,'Account was created for '+ user)
+            return redirect('login')
+    context = {'form':form}
+    return render(request,'accounts/register.html',context)
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
+#def javaC(request):
+#    return render(request,'accounts/java_course.html')
+def javacourseview(request):
+    if request.user.is_authenticated:
+        return render(request,'accounts/java_course.html')
+    else:
+        return redirect('login')
+def pythoncourseview(request):
+    if request.user.is_authenticated:
+        return render(request,'accounts/python_course.html')
+    else:
+        return redirect('login')
+def aboutview(request):
+    if request.user.is_authenticated:
+        return render(request,'accounts/about.html')
+    else:
+        return redirect('login')
+
+def quizjavaview(request):
+    if request.user.is_authenticated:
+        return render(request,'accounts/quiz_java.html')
+    else:
+        return redirect('login')
+def quizpythonview(request):
+    if request.user.is_authenticated:
+        return render(request,'accounts/quiz_python.html')
+    else:
+        return redirect('login')
+
+def profileview(request):
+   # return render(request,'accounts/profile.html')
+    if request.user.is_authenticated:
+        context={}
+        if request.method=='POST':
+            username=request.POST['username']
+            email=request.POST['email']
+            user=Accountuser.objects.get(username=username)
+            try:
+                u=Accountuser.objects.get(email=email)
+                if(user.username!=u.username):
+                    context['mesg']="Email already exists try with another email"
+                    #return render(request,'profile.html',context)
+            except:
+                pass
+            context['mesg']="Changes saved"
+            user.email = email
+            user.save()
+            return render(request,'accounts/profile.html',context)
+        return render(request,'accounts/profile.html',context)
+    else:
+        return redirect('login')
+def availcourseview(request):
+    if request.user.is_authenticated:
+        return render(request,'accounts/availablecourses.html')
+    else:
+        return redirect('login')
+def viewbookspage(request):
+    if request.user.is_authenticated:
+        return render(request,'accounts/viewbooks.html')
+    else:
+        return redirect('login')
+def javabookview(request):
+    if request.user.is_authenticated:
+        filepath = os.path.join('static', 'javabook.pdf')
+        return FileResponse(open(filepath, 'rb'), content_type = 'application/pdf')
+        #return render(request,'accounts/viewbooks.html')
+    else:
+        return redirect('login')
+def pythonbookview(request):
+    if request.user.is_authenticated:
+        filepath = os.path.join('static', 'pythonbook.pdf')
+        return FileResponse(open(filepath, 'rb'), content_type = 'application/pdf')
+        #return render(request,'accounts/viewbooks.html')
+    else:
+        return redirect('login')
+
