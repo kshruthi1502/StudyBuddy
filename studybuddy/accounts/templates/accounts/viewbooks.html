@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <title>Available Courses</title>
+ <title>View Books</title>
+ <br><br><br><br>
+ <center><h3 style ="position: 'absolute'; top: '30%'; left: '50%';" > Books </h3> 
+ <p style =" position: 'absolute'; top: '35%'; left: '50%';"> 
+________________________________________________________________________________________________________________ </p> </center>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/4.7.0/css/font-awesome.min.css">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" 
@@ -201,7 +205,8 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
 </head>
 <body>
    
-  <!--url('/media/elearn.jpg'); href="/accounts/java_course.html" onclick="javaCourse()" onclick="pythonCourse()"-->
+  {% for c in Courses %}
+    {% if   c.user.username == user.username and c.coursename|slugify == 'java'  %}
   <div class="card" style="width: 18rem; position: absolute;  top:40%; left: 22%;">
     <img class="card-img-top" src="/media/javabook.png" alt="Card image cap" width="400" height="300">
     <div class="card-body">
@@ -211,6 +216,10 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
       <a  href="{% url 'viewjavabook' %}" class="btn btn-primary" id="buttonbefore" >View Book</a>
     </div>
   </div>
+  {% endif %}
+      {% endfor %} 
+      {% for c in Courses %}
+    {% if   c.user.username == user.username and c.coursename|slugify == 'python'  %}
   <div class="card" style="width: 18rem; position: absolute;  top:40%; left: 45%;">
     <img class="card-img-top" src="/media/pythonbook.png" alt="Card image cap" width="400" height="300">
     <div class="card-body">
@@ -219,6 +228,10 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
       <a href="{% url 'viewpythonbook' %}" class="btn btn-primary" id="buttonbefore2" >View Book</a>
     </div>
   </div>
+  {% endif %}
+      {% endfor %} 
+      {% for c in Courses %}
+    {% if   c.user.username == user.username and c.coursename|slugify == 'cpp'  %}
   <div class="card" style="width: 18rem; position: absolute;  top:40%; left: 68%;">
     <img class="card-img-top" src="/media/cppbook.PNG" alt="Card image cap" width="400" height="300">
     <div class="card-body">
@@ -227,7 +240,8 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
       <a href="{% url 'viewcppbook' %}" class="btn btn-primary" id="buttonbefore2" >View Book</a>
     </div>
   </div>
-      
+  {% endif %}
+  {% endfor %}  
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a  href="{% url 'home' %}">My Courses</a>

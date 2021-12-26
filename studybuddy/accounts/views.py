@@ -118,7 +118,8 @@ def availcourseview(request):
         return redirect('login')
 def viewbookspage(request):
     if request.user.is_authenticated:
-        return render(request,'accounts/viewbooks.html')
+        Courses = Course.objects.all()
+        return render(request, "accounts/viewbooks.html", {'Courses': Courses})
     else:
         return redirect('login')
 def javabookview(request):

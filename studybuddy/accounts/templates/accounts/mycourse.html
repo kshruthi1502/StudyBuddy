@@ -19,13 +19,6 @@ src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
 src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
-   <!-- <style>
-    .vertical-menu {
-      width: 200px;
-    }
-    }
-    </style>-->
     <style>
         body {
   font-family: "Lato", sans-serif;
@@ -201,7 +194,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
  
 </head>
 <body>
-   <!-- and  c.coursename|slugify == 'java'     c.user == user.username and-->
+  
    
     {% for c in Courses %}
     {% if   c.user.username == user.username and c.coursename|slugify == 'java'  %}
