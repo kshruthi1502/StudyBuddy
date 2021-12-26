@@ -21,6 +21,7 @@ urlpatterns = [
     path('viewbook/',views.viewbookspage,name="viewbook"),
     path('viewjavabook/',views.javabookview,name="viewjavabook"),
     path('viewpythonbook/',views.pythonbookview,name="viewpythonbook"),
+    path('enrollc/',views.viewenrollpage,name="enrollc"),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

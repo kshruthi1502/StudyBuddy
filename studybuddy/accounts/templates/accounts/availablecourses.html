@@ -1,3 +1,4 @@
+from .models import Course
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +37,19 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
     }
     </style>-->
     <style>
+      
+   .rbtn {
+  border: none;
+  background-color: dodgerblue;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  right:0%;
+}
+.success {color: Black;}
+
+ 
         body {
   font-family: "Lato", sans-serif;
 }
@@ -221,8 +235,10 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
  </script>
 </head>
 <body>
+ <!-- -->
+ 
    
-  <!--url('/media/elearn.jpg'); href="/accounts/java_course.html" onclick="javaCourse()" onclick="pythonCourse()"-->
+  
   <div class="card" style="width: 18rem; position: absolute;  top:40%; left: 22%;">
     <img class="card-img-top" src="/media/java.jpg" alt="Card image cap" width="400" height="200">
     <div class="card-body">
@@ -232,7 +248,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
         <li class="list-group-item">Time to Complete</li>
         <li class="list-group-item">4 Hours</li>
         </ul>
-      <a  href="#" class="btn btn-primary" id="buttonbefore" onclick="changename()">Enroll Course</a>
+      <a  href="{% url 'enrollc' %}" class="btn btn-primary" id="buttonbefore" onclick="changename()">Enroll Course</a>
     </div>
   </div>
   <div class="card" style="width: 18rem; position: absolute;  top:40%; left: 45%;">
@@ -244,7 +260,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
         <li class="list-group-item">Time to Complete</li>
         <li class="list-group-item">4 Hours</li>
         </ul>
-      <a href="#" class="btn btn-primary" id="buttonbefore2" onclick="changename2()" >Enroll Course</a>
+      <a href="{% url 'enrollc' %}" class="btn btn-primary" id="buttonbefore2" onclick="changename2()" >Enroll Course</a>
     </div>
   </div>
       
@@ -255,11 +271,22 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
         <a href="{% url 'viewbook' %}">View Books</a>
         
       </div> 
+      <!--     <button type="button" style="bottom:0px;" >Click Me!</button>-->
+      <!--<div>
+        <br><br><br><br>
+        <center><a href="{% url 'enrollc' %}" class="rbtn success">Enroll </a> </center> 
+      </div>-->
       <script>
         document.getElementById("mySidenav").style.width = "250px";  
         function changename()
         {
         document.getElementById("buttonbefore").innerHTML = "Enrolled";
+        //Courses.user=user.username
+        //Courses.coursename='java'
+        //Courses.save()
+        insertfunc();
+        
+        
         }
         function changename2()
         {
@@ -317,5 +344,6 @@ PROPERTY</button><br><br><br>
  </table>
  </div>
  </div>
+ 
 </body>
 </html>

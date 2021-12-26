@@ -3,12 +3,20 @@ from django.contrib import messages
 # Create your views here.
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
+from .models import Course
+from django.contrib.auth.models import User
+from accounts.models import Course
 from .forms import CreateUserForm
+from .forms import EnrollForm
 from django.contrib.auth import authenticate,login,logout
 from django.http import FileResponse
 import os
 def home(request):
-    return render(request,'accounts/mycourse.html')
+    Courses = Course.objects.all()
+
+    return render(request, "accounts/mycourse.html", {'Courses': Courses})
+
+    #return render(request,'accounts/mycourse.html')
 
 def redirecthome(request):
     return render(request,'accounts/home_lr.html')
@@ -41,8 +49,7 @@ def register(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
-#def javaC(request):
-#    return render(request,'accounts/java_course.html')
+
 def javacourseview(request):
     if request.user.is_authenticated:
         return render(request,'accounts/java_course.html')
@@ -94,7 +101,9 @@ def profileview(request):
         return redirect('login')
 def availcourseview(request):
     if request.user.is_authenticated:
-        return render(request,'accounts/availablecourses.html')
+        Courses = Course.objects.all()
+        return render(request, "accounts/availablecourses.html", {'Courses': Courses})
+        #return render(request,'accounts/availablecourses.html')
     else:
         return redirect('login')
 def viewbookspage(request):
@@ -116,4 +125,20 @@ def pythonbookview(request):
         #return render(request,'accounts/viewbooks.html')
     else:
         return redirect('login')
+def viewenrollpage(request):
+    if request.user.is_authenticated:
+        form = EnrollForm(request.POST or None)
+        if request.method == 'POST':
+                form = EnrollForm(request.POST)
+                if form.is_valid():
+                    form.save()
+                    return redirect('home')
+        return render(request,'accounts/enrollcourse.html', {'form':form})
+    else:
+        return redirect('login')
 
+
+
+
+
+  

@@ -11,3 +11,7 @@ class Question(models.Model):
 class Course(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     coursename = models.CharField(max_length=200)
+def insertfunc():    
+    Course.objects.create(user='dhanya',coursename='java') 
+
+   

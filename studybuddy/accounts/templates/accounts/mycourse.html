@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  
 <head>
  <title>HomePage</title>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/4.7.0/css/font-awesome.min.css">
@@ -13,12 +14,11 @@ src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
 src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+   
    <!-- <style>
     .vertical-menu {
       width: 200px;
     }
-    
-    
     }
     </style>-->
     <style>
@@ -207,11 +207,13 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
  </script>
 </head>
 <body>
+   <!-- and  c.coursename|slugify == 'java'     c.user == user.username and-->
    
-  <!--url('/media/elearn.jpg'); href="/accounts/java_course.html" onclick="javaCourse()" onclick="pythonCourse()"-->
-      <div class="card" style="width: 18rem; position: absolute;  top:40%; left: 22%;">
-        <img class="card-img-top" src="/media/java.jpg" alt="Card image cap" width="400" height="200">
-        <div class="card-body">
+    {% for c in Courses %}
+    {% if   c.user.username == user.username and c.coursename|slugify == 'java'  %}
+        <div class="card" style="width: 18rem; position: absolute;  top:40%; left: 22%;">
+          <img class="card-img-top" src="/media/java.jpg" alt="Card image cap" width="400" height="200">
+          <div class="card-body">
           <h5 class="card-title">JAVA</h5>
           <p class="card-text">Java is a high-level, class-based, object-oriented programming language.</p>
           <ul class="list-group list-group-flush">
@@ -221,6 +223,10 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
           <a  href="{% url 'javacourse' %}" class="btn btn-primary" >Open Course</a>
         </div>
       </div>
+      {% endif %}
+      {% endfor %} 
+      {% for c in Courses %}
+      {% if   c.user.username == user.username and c.coursename|slugify == 'python'  %} 
       <div class="card" style="width: 18rem; position: absolute;  top:40%; left: 45%;">
         <img class="card-img-top" src="/media/python2.jfif" alt="Card image cap" width="400" height="200">
         <div class="card-body">
@@ -233,6 +239,8 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
           <a href="{% url 'pythoncourse' %}" class="btn btn-primary" >Open Course</a>
         </div>
       </div>
+      {% endif %}
+      {% endfor %}
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a  href="{% url 'home' %}">My Courses</a>
@@ -280,7 +288,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
 id="dropdown09" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false">{{user.username}}</a>
  <div class="dropdown-menu" aria-labelledby="dropdown09">
   <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-  <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+  <a class="dropdown-item" href="{% url 'profile' %}">{{Course.user}}</a>
  </div>
  
  </li>
