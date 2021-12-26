@@ -3,6 +3,10 @@ from .models import Course
 <html lang="en">
 <head>
  <title>Available Courses</title>
+ <br><br><br><br>
+ <center><h3 style ="position: 'absolute'; top: '30%'; left: '50%';" > Available Courses </h3> 
+ <p style =" position: 'absolute'; top: '35%'; left: '50%';"> 
+________________________________________________________________________________________________________________ </p> </center>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/4.7.0/css/font-awesome.min.css">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" 
@@ -263,7 +267,18 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
       <a href="{% url 'enrollc' %}" class="btn btn-primary" id="buttonbefore2" onclick="changename2()" >Enroll Course</a>
     </div>
   </div>
-      
+  <div class="card" style="width: 18rem; position: absolute;  top:40%; left: 68%;">
+    <img class="card-img-top" src="/media/cpp.jpg" alt="Card image cap" width="400" height="200">
+    <div class="card-body">
+      <h5 class="card-title">C++</h5>
+      <p class="card-text">C++ is an extension of the C programming language, or "C with Classes".</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Time to Complete</li>
+        <li class="list-group-item">4 Hours</li>
+        </ul>
+      <a href="{% url 'enrollc' %}" class="btn btn-primary" id="buttonbefore2" onclick="changename2()" >Enroll Course</a>
+    </div>
+  </div>
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a  href="{% url 'home' %}">My Courses</a>

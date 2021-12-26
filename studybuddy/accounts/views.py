@@ -55,6 +55,12 @@ def javacourseview(request):
         return render(request,'accounts/java_course.html')
     else:
         return redirect('login')
+def cppcourseview(request):
+    if request.user.is_authenticated:
+        return render(request,'accounts/cpp_course.html')
+    else:
+        return redirect('login')
+
 def pythoncourseview(request):
     if request.user.is_authenticated:
         return render(request,'accounts/python_course.html')
@@ -76,7 +82,11 @@ def quizpythonview(request):
         return render(request,'accounts/quiz_python.html')
     else:
         return redirect('login')
-
+def quizcppview(request):
+    if request.user.is_authenticated:
+        return render(request,'accounts/quiz_cpp.html')
+    else:
+        return redirect('login')
 def profileview(request):
    # return render(request,'accounts/profile.html')
     if request.user.is_authenticated:
@@ -121,6 +131,13 @@ def javabookview(request):
 def pythonbookview(request):
     if request.user.is_authenticated:
         filepath = os.path.join('static', 'pythonbook.pdf')
+        return FileResponse(open(filepath, 'rb'), content_type = 'application/pdf')
+        #return render(request,'accounts/viewbooks.html')
+    else:
+        return redirect('login')
+def cppbookview(request):
+    if request.user.is_authenticated:
+        filepath = os.path.join('static', 'Cppbook.pdf')
         return FileResponse(open(filepath, 'rb'), content_type = 'application/pdf')
         #return render(request,'accounts/viewbooks.html')
     else:
