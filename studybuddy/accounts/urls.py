@@ -18,7 +18,6 @@ urlpatterns = [
     path('quizjava/',views.quizjavaview,name="quizjava"),
     path('quizpython',views.quizpythonview,name="quizpython"),
     path('quizcpp',views.quizcppview,name="quizcpp"),
-    path('profile',views.profileview,name="profile"),
     path('availcourse/',views.availcourseview,name="availcourse"),
     path('viewbook/',views.viewbookspage,name="viewbook"),
     path('viewjavabook/',views.javabookview,name="viewjavabook"),

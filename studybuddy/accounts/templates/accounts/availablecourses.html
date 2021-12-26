@@ -7,6 +7,7 @@ from .models import Course
  <center><h3 style ="position: 'absolute'; top: '30%'; left: '50%';" > Available Courses </h3> 
  <p style =" position: 'absolute'; top: '35%'; left: '50%';"> 
 ________________________________________________________________________________________________________________ </p> </center>
+
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/4.7.0/css/font-awesome.min.css">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" 
@@ -18,28 +19,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
 src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <!-- <style>
-    .vertical-menu {
-      width: 200px;
-    }
-    
-    .vertical-menu a {
-      background-color: #e6d9d8;
-      color: black;
-      display: block;
-      padding: 60px;
-      text-decoration: none;
-    }
-    
-    .vertical-menu a:hover {
-      background-color: #ccc;
-    }
-    
-    .vertical-menu a.active {
-      background-color: #0099CC;
-      color: white;
-    }
-    </style>-->
+  
     <style>
       
    .rbtn {
@@ -276,7 +256,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
         <li class="list-group-item">Time to Complete</li>
         <li class="list-group-item">4 Hours</li>
         </ul>
-      <a href="{% url 'enrollc' %}" class="btn btn-primary" id="buttonbefore2" onclick="changename2()" >Enroll Course</a>
+      <a href="{% url 'enrollc' %}" class="btn btn-primary" id="buttonbefore3" onclick="changename3()" >Enroll Course</a>
     </div>
   </div>
       <div id="mySidenav" class="sidenav">
@@ -293,7 +273,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
       </div>-->
       <script>
         document.getElementById("mySidenav").style.width = "250px";  
-        function changename()
+        /*function changename()
         {
         document.getElementById("buttonbefore").innerHTML = "Enrolled";
         //Courses.user=user.username
@@ -307,6 +287,10 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
         {
         document.getElementById("buttonbefore2").innerHTML = "Enrolled";
         }
+        function changename3()
+        {
+        document.getElementById("buttonbefore3").innerHTML = "Enrolled";
+        }*/
       </script>
  <nav class="navbar navbar-expand-sm bg-info navbar-dark fixed-top">
     
@@ -329,7 +313,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
 id="dropdown09" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false">{{user.username}}</a>
  <div class="dropdown-menu" aria-labelledby="dropdown09">
   <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-  <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+ 
  </div>
  
  </li>
@@ -359,6 +343,29 @@ PROPERTY</button><br><br><br>
  </table>
  </div>
  </div>
- 
+ {% for c in Courses %}
+    {% if   c.user.username == user.username and c.coursename|slugify == 'java'  %}
+    <script> document.getElementById("buttonbefore").innerHTML = "Enrolled"; 
+    </script>
+    {% else %}
+    <script> document.getElementById("buttonbefore").innerHTML = "Enroll course";</script>
+    {% endif %}
+  {% endfor %}
+
+  {% for c in Courses %}
+    {% if   c.user.username == user.username and c.coursename|slugify == 'python'  %}
+    <script> document.getElementById("buttonbefore2").innerHTML = "Enrolled";</script> 
+    {% else %}
+    <script> document.getElementById("buttonbefore2").innerHTML = "Enroll course";</script>
+    {% endif %}
+  {% endfor %}
+  
+  {% for c in Courses %}
+    {% if   c.user.username == user.username and c.coursename|slugify == 'cpp'  %}
+    <script> document.getElementById("buttonbefore3").innerHTML = "Enrolled";</script>  
+    {% else %}
+    <script> document.getElementById("buttonbefore3").innerHTML = "Enroll course";</script>
+    {% endif %}
+  {% endfor %}
 </body>
 </html>

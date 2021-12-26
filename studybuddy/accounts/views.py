@@ -87,28 +87,7 @@ def quizcppview(request):
         return render(request,'accounts/quiz_cpp.html')
     else:
         return redirect('login')
-def profileview(request):
-   # return render(request,'accounts/profile.html')
-    if request.user.is_authenticated:
-        context={}
-        if request.method=='POST':
-            username=request.POST['username']
-            email=request.POST['email']
-            user=Accountuser.objects.get(username=username)
-            try:
-                u=Accountuser.objects.get(email=email)
-                if(user.username!=u.username):
-                    context['mesg']="Email already exists try with another email"
-                    #return render(request,'profile.html',context)
-            except:
-                pass
-            context['mesg']="Changes saved"
-            user.email = email
-            user.save()
-            return render(request,'accounts/profile.html',context)
-        return render(request,'accounts/profile.html',context)
-    else:
-        return redirect('login')
+
 def availcourseview(request):
     if request.user.is_authenticated:
         Courses = Course.objects.all()
@@ -154,6 +133,8 @@ def viewenrollpage(request):
         return render(request,'accounts/enrollcourse.html', {'form':form})
     else:
         return redirect('login')
+
+
 
 
 
